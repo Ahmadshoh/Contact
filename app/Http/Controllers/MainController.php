@@ -46,7 +46,7 @@ class MainController extends Controller
 
         foreach ($contacts as $contact) {
             if ($contact->name == $request['name']) {
-                return redirect()->route('contact.create')->withErrors("Такой контакт уже существует!");
+                return redirect()->route('contact.create')->withErrors("Контакт с таким именем уже существует!");
             }
 
             foreach ($contact->getPhones() as $oldPhone) {
