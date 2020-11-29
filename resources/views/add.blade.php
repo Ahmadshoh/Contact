@@ -6,23 +6,48 @@
         <h6 class="m-0 font-weight-bold">Добавить контакт</h6>
     </div>
     <div class="card-body">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('addContact') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="title">Имя товара</label>
-                <input type="text" name="title" class="form-control" placeholder="Имя товара" value="" required>
+                <label for="name">Имя</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required autofocus autocomplete="name">
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
 
             <div class="form-group">
-                <label for="alias">Ссылка</label>
-                <input type="text" name="alias" class="form-control" placeholder="Автоматическая генерация" value="" readonly>
-            </div>
+                <label for="phone">Номер телефона</label>
+                <input type="tel" name="phone[]" id="phone" value="{{ old('phone') }}"
+                       class="form-control @error('phone') is-invalid @enderror" maxlength="13"
+                       required autocomplete="phone">
 
+                <div class="text-right mt-2">
+                    <button class="btn btn-primary" id="addPhoneButton">Добавить номер</button>
+                </div>
+
+
+                @error('phone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
 
             <div class="form-group">
-                <label for="price">Цена</label>
-                <input type="number" name="price" class="form-control" placeholder="Цена" pattern="^[0-9.]{1,}$" value="" required>
+                <label for="email">Email-адрес</label>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required autocomplete="email">
+
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
+
 
 
             <input type="submit" class="btn btn-success btn-block" value="Сохранить">

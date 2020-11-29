@@ -15,3 +15,4 @@ use \App\Http\Controllers\ContactController;
 
 Route::get('/', [ContactController::class, "index"])->name("index");
 Route::get('/add', [ContactController::class, "add"])->name("add");
+Route::post('/add/add', [ContactController::class, "addContact"])->name('addContact');

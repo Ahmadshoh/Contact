@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
+    public function getPhones() {
+        return $this->hasMany(Phone::class, 'contact_id', 'id')->get();
+    }
+
+
+    public function getEmails() {
+        return $this->hasMany(Email::class, 'contact_id', 'id')->get();
+    }
 }
