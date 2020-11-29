@@ -16,7 +16,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(15);
+        $contacts = Contact::paginate(10);
 
         return view('main', compact('contacts'));
     }
@@ -39,24 +39,47 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-//        $validator = $request->validate([
-//            'name'     => ['required', 'string', 'max:255', 'unique:contacts']
-//        ]);
-
-
         $phones = $request->phone;
         $emails = $request->email;
+
+        $contacts = Contact::all();
+
+        foreach ($contacts as $contact) {
+            if ($contact->name == $request['name']) {
+                return redirect()->route('contact.create')->withErrors("Такой контакт уже существует!");
+            }
+
+            foreach ($contact->getPhones() as $oldPhone) {
+                foreach ($phones as $newPhone) {
+                    if ($oldPhone->phone == $newPhone) {
+                        return redirect()->route('contact.create')->withErrors("Контакт с таким номером уже существует!");
+                    }
+                }
+            }
+
+            foreach ($contact->getEmails() as $oldEmail) {
+                foreach ($emails as $newEmail) {
+                    if ($oldEmail->email == $newEmail) {
+                        return redirect()->route('contact.create')->withErrors("Контакт с таким email-ом уже существует!");
+                    }
+                }
+            }
+
+        }
+
         $contact_id = Contact::create(['name' => $request['name']])->id;
 
         foreach ($phones as $phone) {
             if ($phone !== null) {
+                if (!preg_match('/((8|\+7)-?)?\(?\d{3,5}\)?-?\d{1}-?\d{1}-?\d{1}-?\d{1}-?\d{1}((-?\d{1})?-?\d{1})?/', $phone)) {
+                   return redirect()->route('contact.create')->withErrors("Поля для ввода телефона заполнено не правильно!");
+                }
                 $phoneTable = new Phone();
                 $phoneTable->contact_id = $contact_id;
                 $phoneTable->phone = $phone;
 
                 $phoneTable->save();
             }
-
         }
 
         foreach ($emails as $email) {

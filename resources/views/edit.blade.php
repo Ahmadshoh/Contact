@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="text-right mt-2">
-                        <button class="btn btn-primary" id="addPhoneButton">Добавить номер</button>
+                        <a class="btn btn-primary" id="addPhoneButton" style="color: white;">Добавить ещё номер</a>
                     </div>
 
 
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="text-right mt-2">
-                        <button class="btn btn-primary" id="addEmailButton">Добавить email</button>
+                        <a class="btn btn-primary" id="addEmailButton" style="color: white;">Добавить ещё email</a>
                     </div>
 
                     @error('email')

@@ -57,7 +57,7 @@
             <tfoot>
             <tr>
                 <td colspan="6">
-                    <ul class="pagination pull-right">
+                    <ul class="pagination fa-pull-right">
                         {{ $contacts->links() }}
                     </ul>
                 </td>

@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="text-right mt-2">
-                    <a class="btn btn-primary" id="addPhoneButton" style="color: white;">Добавить номер</a>
+                    <a class="btn btn-primary" id="addPhoneButton" style="color: white;">Добавить ещё номер</a>
                 </div>
 
 
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="text-right mt-2">
-                    <a class="btn btn-primary" id="addEmailButton" style="color: white;">Добавить email</a>
+                    <a class="btn btn-primary" id="addEmailButton" style="color: white;">Добавить ещё email</a>
                 </div>
 
                 @error('email')

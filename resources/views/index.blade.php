@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Ahmadshoh Nasrulloev">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 </head>
 
@@ -40,7 +45,7 @@
             <div class="container-fluid">
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Контакты</h1>
+                    <a href="{{ route('contact.index') }}"><h1 class="h1 mb-0">Контакты</h1></a>
                     <div class="text-right">
                         <form class="form-inline mt-2 mt-md-0" action="{{ route('search') }}" method="get">
                             <input class="form-control mr-sm-2" type="text" name="query" placeholder="Поиск" aria-label="Поиск">
@@ -48,8 +53,6 @@
                         </form>
                     </div>
                 </div>
-
-
 
                 @yield('content')
             </div>

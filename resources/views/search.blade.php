@@ -7,9 +7,6 @@
         </div>
 
         <div class="card-body">
-            <div class="mb-3">
-                <a href="{{ route('contact.create') }}"><button class="btn btn-primary">Добавить новый контакт</button></a>
-            </div>
 
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
