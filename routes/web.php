@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\ContactController;
+use \App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use \App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', [ContactController::class, "index"])->name("index");
-Route::get('/add', [ContactController::class, "add"])->name("add");
-Route::post('/add/add', [ContactController::class, "addContact"])->name('addContact');
+//Route::get('/', [MainController::class, "index"])->name("index");
+//Route::get('/add', [MainController::class, "create"])->name("add");
+//Route::post('/add/add', [MainController::class, "store"])->name('addContact');
+Route::get('/', function () {
+    return redirect()->route('contact.index');
+});
+
+Route::resource('contact', MainController::class, ['admin'])->except('show');
+Route::get('/search', [MainController::class, 'search'])->name('search');

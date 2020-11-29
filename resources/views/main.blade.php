@@ -8,7 +8,7 @@
 
     <div class="card-body">
     <div class="mb-3">
-        <a href="{{ route('add') }}"><button class="btn btn-primary">Добавить новый контакт</button></a>
+        <a href="{{ route('contact.create') }}"><button class="btn btn-primary">Добавить новый контакт</button></a>
     </div>
 
     <div class="table-responsive">
@@ -40,11 +40,11 @@
                         </td>
 
                         <td>
-                            <form action="" method="post">
+                            <form action="{{ route('contact.destroy', [$contact->id]) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 @csrf
-                                <a href=""><i class="fa fa-eye"></i></a>
-                                <button type="submit" class="btn "><i class="fa fa-trash"></i></button>
+                                <a href="{{ route('contact.edit', [$contact->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
             <tr>
                 <td colspan="6">
                     <ul class="pagination pull-right">
-
+                        {{ $contacts->links() }}
                     </ul>
                 </td>
             </tr>
